@@ -33,37 +33,37 @@
 
     <div class="question-section">
         <p class="question-label">Q1 (E/I): 他の犬が集まっている場所を見たら？</p>
-        <div class="option-group"><input type="radio" name="q1" value="E" required> 1. すぐに駆けつける</div>
+        <div class="option-group"><input type="radio" name="q1" value="E"> 1. すぐに駆けつける</div>
         <div class="option-group"><input type="radio" name="q1" value="I"> 2. 遠くから様子を伺う</div>
     </div>
     <div class="question-section">
         <p class="question-label">Q2 (E/I): 家で一人の時間、どう過ごしたい？</p>
-        <div class="option-group"><input type="radio" name="q2" value="E" required> 1. 寂しくて誰かを呼ぶ</div>
+        <div class="option-group"><input type="radio" name="q2" value="E"> 1. 寂しくて誰かを呼ぶ</div>
         <div class="option-group"><input type="radio" name="q2" value="I"> 2. 自分の時間を満喫する</div>
     </div>
     <div class="question-section">
         <p class="question-label">Q3 (S/N): 新しいおもちゃをもらったら？</p>
-        <div class="option-group"><input type="radio" name="q3" value="S" required> 1. 噛み心地や構造をじっくり確かめる</div>
+        <div class="option-group"><input type="radio" name="q3" value="S"> 1. 噛み心地や構造をじっくり確かめる</div>
         <div class="option-group"><input type="radio" name="q3" value="N"> 2. どうやって遊べるか色々な可能性を想像する</div>
     </div>
     <div class="question-section">
         <p class="question-label">Q4 (S/N): 散歩のルートについて</p>
-        <div class="option-group"><input type="radio" name="q4" value="S" required> 1. 毎回同じ道の隅々までチェックする</div>
+        <div class="option-group"><input type="radio" name="q4" value="S"> 1. 毎回同じ道の隅々までチェックする</div>
         <div class="option-group"><input type="radio" name="q4" value="N"> 2. 新しい道を探求し、ワクワクする</div>
     </div>
     <div class="question-section">
         <p class="question-label">Q5 (T/F): 飼い主を怒らせた時、まず何を考える？</p>
-        <div class="option-group"><input type="radio" name="q5" value="T" required> 1. なぜ怒られたか原因を論理的に分析する</div>
+        <div class="option-group"><input type="radio" name="q5" value="T"> 1. なぜ怒られたか原因を論理的に分析する</div>
         <div class="option-group"><input type="radio" name="q5" value="F"> 2. 飼い主の悲しい感情を察知し、慰める</div>
     </div>
     <div class="question-section">
         <p class="question-label">Q6 (T/F): 友達の犬が喧嘩：</p>
-        <div class="option-group"><input type="radio" name="q6" value="T" required> 1. どちらが間違っているか冷静に見極める</div>
+        <div class="option-group"><input type="radio" name="q6" value="T"> 1. どちらが間違っているか冷静に見極める</div>
         <div class="option-group"><input type="radio" name="q6" value="F"> 2. 仲裁に入り、平和を優先する</div>
     </div>
     <div class="question-section">
         <p class="question-label">Q7 (J/P): ご飯の時間について</p>
-        <div class="option-group"><input type="radio" name="q7" value="J" required> 1. 決められた時間にきっちり欲しい</div>
+        <div class="option-group"><input type="radio" name="q7" value="J"> 1. 決められた時間にきっちり欲しい</div>
         <div class="option-group"><input type="radio" name="q7" value="P"> 2. お腹が空いた時に自由にもらいたい</p>
     </div>
 
@@ -88,7 +88,7 @@
 
 <script>
 // ----------------------------------------------------
-// JavaScript (診断ロジック) - 最終修正版
+// JavaScript (診断ロジック) - 最終修正版（Required削除）
 // ----------------------------------------------------
 
 const DOG_TYPES = {
@@ -117,13 +117,11 @@ function determineCode() {
 
     // 質問チェックロジック（7問）
     for (let i = 1; i <= 7; i++) {
-        // *** 致命的なエラー修正箇所: document.querySelectorで確実な要素取得を行う ***
+        // 修正後のチェックロジック
         const checked = document.querySelector(`input[name="q${i}"]:checked`);
         
         if (!checked) {
             allAnswered = false;
-            // 💡 修正前: break; でループを抜けていました。
-            // 💡 修正後: 未回答があっても、最後までチェックを継続し、最後にnullを返します。
         } else {
              answers[checked.value]++;
         }
